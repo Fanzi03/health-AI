@@ -71,8 +71,8 @@ publishing {
         create<MavenPublication>("maven") {  // ← create<MavenPublication>
             from(components["java"])         // ← components["java"]
             
-            groupId = "org.ai"
-            artifactId = "health-AI"
+            groupId = "io.github.fanzi03"
+            artifactId = "health-ai"
             version = "0.0.1-alpha"
         }
     }
