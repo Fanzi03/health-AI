@@ -67,8 +67,8 @@ pitest {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            from components.java
+        create<MavenPublication>("maven") {  // ← create<MavenPublication>
+            from(components["java"])         // ← components["java"]
             
             groupId = "org.ai"
             artifactId = "health-AI"
@@ -78,10 +78,10 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Fanzi03/health-AI")  // Замените username/repo
+            setUrl("https://maven.pkg.github.com/Fanzi03/health-AI")  // ← setUrl
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
