@@ -65,3 +65,24 @@ pitest {
 
 }
 
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            
+            groupId = "org.ai"
+            artifactId = "health-AI"
+            version = "0.0.1-alpha"
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Fanzi03/health-AI")  // Замените username/repo
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+}
